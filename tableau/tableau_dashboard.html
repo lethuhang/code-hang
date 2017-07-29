@@ -1,0 +1,19 @@
+<html>
+<head>
+	<title>Audience Report</title>
+	<script src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
+	<script>
+		function initViz() {
+			var containerDiv = document.getElementById("vizContainer");
+			var url = "https://public.tableau.com/views/AudienceReport_2017_Apr_v5_HangTest_0/Sectoricon";
+			var options = {
+				hideTabs: true
+			};
+			var viz = new tableau.Viz(containerDiv, url, options);
+		}
+	</script>
+</head>
+<body onload="initViz();">
+    <div id="vizContainer" style="width:420px; height:200px;"></div>   
+</body>
+</html>
