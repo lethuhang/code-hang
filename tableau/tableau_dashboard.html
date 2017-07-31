@@ -1,19 +1,70 @@
 <html>
 <head>
 	<title>Audience Report</title>
+	<style>
+		.dropbutton {
+	background-color: #4CAF50;
+	color: white;
+	padding: 16px;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+		}	
+		.dropdown {
+			position: relative;
+			display: inline-block;
+		}
+		.dropdown-content {
+			display: none;
+			position: absolute;
+			background-color: #f9f9f9;
+			min-width: 100%;
+			z-index: 1;
+		}
+		.dropdown-content a{
+			color: black;
+			padding: 12px 16px;
+			text-decoration: none;
+			display: block;
+		}	
+		.dropdown-content a:hover {background-color: #f1f1f1}
+		.dropdown:hover .dropdown-content {
+			display: block;
+		}
+	</style>
 	<script src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
 	<script>
+		var viz;
 		function initViz() {
 			var containerDiv = document.getElementById("vizContainer");
-			var url = "https://public.tableau.com/views/AudienceReport_2017_Apr_v5_HangTest_0/Sectoricon";
+			var url = "https://public.tableau.com/views/AudienceReport_2017_Apr_v5_HangTest_0/DiscoveryPage";
 			var options = {
 				hideTabs: true
 			};
-			var viz = new tableau.Viz(containerDiv, url, options);
+			viz = new tableau.Viz(containerDiv, url, options);
 		}
+		function sectorFilter(value) {
+            var sheet = viz.getWorkbook().getActiveSheet("Sector Icon");
+            if (value === "") {
+                sheet.clearFilterAsync("Hot Topics");
+            } 
+            else {
+                sheet.applyFilterAsync("Hot Topics", value, tableau.FilterUpdateType.REPLACE);
+            }
+        }
 	</script>
 </head>
 <body onload="initViz();">
-    <div id="vizContainer" style="width:420px; height:200px;"></div>   
+    <a href="#ending">Jump ending page</a>
+    <div class="dropdown">
+		<button class="dropbutton">Sector</button>
+		<div class="dropdown-content">
+			<div onclick="sectorFilter('');">All</div>
+			<div onclick="sectorFilter('Automotive');">Automotive</div>
+			<div onclick="sectorFilter('Retail');">Retail</div>
+		</div>
+	</div>
+    <div id="vizContainer" style="width:1420px; height:2200px;"></div>  
+    <p id="ending">End page</p> 
 </body>
 </html>

@@ -1,0 +1,38 @@
+<html>
+
+<head>
+    <title>Audience Report Open Page</title>
+    
+    <script type="text/javascript" 
+        src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
+    <script type="text/javascript">
+        var viz;
+        function initViz() {
+            var containerDiv = document.getElementById("vizContainer"),
+                url = "https://public.tableau.com/views/AudienceReport/Map_Dashboard",
+                options = {
+                    hideTabs: true,
+                    onFirstInteractive: function () {
+                        console.log("Run this code when the viz has finished loading.");
+                    }
+                };
+            
+            viz = new tableau.Viz(containerDiv, url, options);
+        }
+        function changeRegion(element){
+            viz.getWorkbook().changeParameterValueAsync('Region Parameter', element.id);
+        }
+    </script>
+</head>
+
+<body onload="initViz();">
+    <div id="North America" onclick='changeRegion(this);' style="cursor: pointer;">North America</div>
+    <div id="Europe" onclick="changeRegion(this);" style="cursor: pointer;">Europe</div>
+    <div id="APAC(exc. SEA)" onclick="changeRegion(this);" style="cursor: pointer;">APAC(exc. SEA)</div>
+    <div id="SEA" onclick="changeRegion(this);" style="cursor: pointer;">SEA</div>
+    <br>
+    <div id="vizContainer" style="width:1000px; height:500px;"></div>
+
+</body>
+
+</html>
