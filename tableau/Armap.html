@@ -2,7 +2,21 @@
 
 <head>
     <title>Audience Report Open Page</title>
-    
+    <style>
+        .tablink {
+            background-color: #999;
+            color: white;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 15px 17px;
+            width: 19%;
+        }
+        .tablink:hover {
+            background-color: #777;
+        }
+    </style>
     <script type="text/javascript" 
         src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
     <script type="text/javascript">
@@ -26,10 +40,13 @@
 </head>
 
 <body onload="initViz();">
-    <div id="North America" onclick='changeRegion(this);' style="cursor: pointer;">North America</div>
-    <div id="Europe" onclick="changeRegion(this);" style="cursor: pointer;">Europe</div>
-    <div id="APAC(exc. SEA)" onclick="changeRegion(this);" style="cursor: pointer;">APAC(exc. SEA)</div>
-    <div id="SEA" onclick="changeRegion(this);" style="cursor: pointer;">SEA</div>
+    <nav style="width:1000px; height: 70px">
+        <button class="tablink" id="(All)" onclick='changeRegion(this);'>Global</button>
+        <button class="tablink" id="North America" onclick='changeRegion(this);'>North America</button>
+        <button class="tablink" id="Europe" onclick="changeRegion(this);">Europe</button>
+        <button class="tablink" id="APAC(exc. SEA)" onclick="changeRegion(this);">APAC(exc. SEA)</button>
+        <button class="tablink" id="SEA" onclick="changeRegion(this);">SEA</button>
+    </nav>
     <br>
     <div id="vizContainer" style="width:1000px; height:500px;"></div>
 
