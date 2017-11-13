@@ -9,7 +9,7 @@ import xlrd
 
 SHEET_NUMBER = 0
 COLUMN_NUMBERS = [0, 1]
-ROW_VALUES = [1,2,3]
+ROW_VALUES = ['^1.0$', '^2.0$', '^3.0$', 'a.*']
 
 def main(argv):
 	xls_dir = argv[0]
@@ -21,9 +21,12 @@ def main(argv):
 
 		for row in range(worksheet.nrows):
 			for column in COLUMN_NUMBERS:
-				cell_value = worksheet.cell_value(row, column)
-				if cell_value in ROW_VALUES:
-					print str(cell_value) + '\t',
+				cell_value = str(
+					worksheet.cell_value(row, column)
+				)
+				for search_value in ROW_VALUES:
+					if re.match(search_value, cell_value):
+						print cell_value + '\t',
 			print
 
 if __name__ == "__main__":
