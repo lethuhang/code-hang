@@ -1,13 +1,15 @@
 import sys
 import glob
-
+import re
 import xlrd
 
+# INSTALL: sudo python get-pip.py (save get-pip.py from web)
 # INSTALL: sudo pip install xlrd
 # RUN: python merge-xls.py test-data/ | grep '\S'  > ~/Desktop/test.csv
 
 SHEET_NUMBER = 0
 COLUMN_NUMBERS = [0, 1]
+ROW_VALUES = [1,2,3]
 
 def main(argv):
 	xls_dir = argv[0]
@@ -20,7 +22,8 @@ def main(argv):
 		for row in range(worksheet.nrows):
 			for column in COLUMN_NUMBERS:
 				cell_value = worksheet.cell_value(row, column)
-				print str(cell_value) + '\t',
+				if cell_value in ROW_VALUES:
+					print str(cell_value) + '\t',
 			print
 
 if __name__ == "__main__":
