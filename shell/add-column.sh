@@ -1,6 +1,9 @@
 #!/bin/bash
 
 # chmod 700 add-column.sh 
+# ./add-column.sh 
+# cd /Users/lethuhang/Desktop/data/processed
+# cat * | grep -v ^\"Country > ALL.csv
 
 PATH=~/Desktop/data/*.csv
 PREFIX='/Users/lethuhang/Desktop/data/processed/with-country-'
