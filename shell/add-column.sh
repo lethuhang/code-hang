@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# chmod 700 add-column.sh 
+
 PATH=~/Desktop/data/*.csv
 PREFIX='/Users/lethuhang/Desktop/data/processed/with-country-'
 
